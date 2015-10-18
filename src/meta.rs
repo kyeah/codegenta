@@ -16,19 +16,19 @@ impl MetaCode for Foreign{
         let mut w = Writer::new();
         w.ln();
         w.tabs(6);
-        w.append("Foreign{");
+        w.append("Foreign {");
         w.ln();
         w.tabs(7);
-        w.append("schema:");
-        w.append(&format!("\"{}\".to_owned(),",self.schema));
+        w.append("schema: ");
+        w.append(&format!("\"{}\".to_owned(),", self.schema));
         w.ln();
         w.tabs(7);
-        w.append("table:");
-        w.append(&format!("\"{}\".to_owned(),",self.table));
+        w.append("table: ");
+        w.append(&format!("\"{}\".to_owned(),", self.table));
         w.ln();
         w.tabs(7);
-        w.append("column:");
-        w.append(&format!("\"{}\".to_owned(),",self.column));
+        w.append("column: ");
+        w.append(&format!("\"{}\".to_owned(),", self.column));
         w.ln();
         w.tabs(6);
         w.append("}");
@@ -45,7 +45,7 @@ impl MetaCode for Column{
         let mut w = Writer::new();
         w.ln();
         w.tabs(4);
-        w.append("Column{");
+        w.append("Column {");
         w.ln();
         w.tabs(5);
         w.append("name: ");
@@ -70,18 +70,24 @@ impl MetaCode for Column{
         w.append(&format!("{}, ",self.is_inherited));
         w.ln();
         w.tabs(5);
-        w.append("default:");
-        if self.default.is_some(){
-            w.append(&format!("Some(\"{}\".to_owned()),", &self.default.clone().unwrap()));
-        }else{
+        w.append("default: ");
+        if self.default.is_some() {
+            w.append(&format!("Some(\"{}\".to_owned()),",
+                              &self.default.clone().unwrap()));
+        } else {
             w.append("None,");
         }
         w.ln();
         w.tabs(5);
-        w.append("comment:");
-        if self.comment.is_some(){
-            w.append(&format!("Some(\"{}\".to_owned()),", &self.comment.clone().unwrap().replace("\"","\\\"").replace("\n", "\\n")));
-        }else{
+        w.append("comment: ");
+        if self.comment.is_some() {
+            w.append(&format!("Some(\"{}\".to_owned()),",
+                              &self.comment
+                                   .clone()
+                                   .unwrap()
+                                   .replace("\"", "\\\"")
+                                   .replace("\n", "\\n")));
+        } else {
             w.append("None,");
         }
         w.ln();
@@ -115,7 +121,7 @@ impl MetaCode for Table{
         let mut w = Writer::new();
         w.ln();
         w.tabs(2);
-        w.append("Table{");
+        w.append("Table {");
         w.ln();
         w.tabs(3);
         w.append("schema: ");
