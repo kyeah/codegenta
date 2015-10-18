@@ -313,8 +313,6 @@ fn generate_meta_code(table: &Table)->(Vec<String>, String){
     w.ln();
     w.tab();
     w.append("fn table() -> Table {");
-    w.ln();
-    w.tab();
     let (table_imports, table_src) = table.meta_code();
     for imp in table_imports{
         imports.push(imp);
@@ -387,7 +385,7 @@ fn generate_dao_conversion_code(config:&Config, table: &Table, all_tables:&Vec<T
     w.append(&table.struct_name());
     w.append(" {");
     w.ln_tab();
-    w.append("fn from_dao(dao:&Dao) -> Self {");
+    w.append("fn from_dao(dao: &Dao) -> Self {");
     w.ln_tabs(2);
     w.append(&table.struct_name());
     w.append(" {");

@@ -67,7 +67,7 @@ impl MetaCode for Column{
         w.append("not_null: ");
         w.append(&format!("{}, ",self.not_null));
         w.append("is_inherited: ");
-        w.append(&format!("{}, ",self.is_inherited));
+        w.append(&format!("{},",self.is_inherited));
         w.ln();
         w.tabs(5);
         w.append("default: ");
@@ -162,11 +162,8 @@ impl MetaCode for Table{
         }
         w.ln();
         w.tabs(3);
-        w.append("columns:");
-        w.ln();
-        w.tabs(3);
-        w.append("vec![");
-        for c in &self.columns{
+        w.append("columns: vec![");
+        for c in &self.columns {
             let (column_imports, column_src) = c.meta_code();
             for imp in column_imports{
                 imports.push(imp);
@@ -179,7 +176,7 @@ impl MetaCode for Table{
         w.append("],");
         w.ln();
         w.tabs(3);
-        w.append(&format!("is_view: {}",self.is_view));
+        w.append(&format!("is_view: {},", self.is_view));
         w.ln();
         w.tabs(2);
         w.append("}");
